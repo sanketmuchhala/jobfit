@@ -2,15 +2,21 @@ from flask import Flask, request, jsonify, render_template
 import re
 import spacy
 from transformers import pipeline
+import os
 
 app = Flask(__name__)
 
 # Load pre-trained model for keyword extraction
 nlp_transformers = pipeline("ner", model="dslim/bert-base-NER")
 
-# Load SpaCy model
-nlp_spacy = spacy.load("en_core_web_sm")
-
+# Check if SpaCy model is installed, if not, download it
+try:
+    nlp_spacy = spacy.load("en_core_web_sm")
+except OSError:
+    from spacy.cli import download
+    download("en_core_web_sm")
+    nlp_spacy = spacy.load("en_core_web_sm")
+    
 # Predefined list of technical keywords
 technical_keywords = [
     'Python', 'Java', 'JavaScript', 'TypeScript', 'C', 'C++', 'C#', 'Ruby', 'PHP', 'Go', 'Swift', 'Kotlin', 'Rust', 'R', 'Scala', 'Perl', 'Haskell', 'Matlab', 'SAS',
@@ -77,4 +83,5 @@ def get_keywords():
     return jsonify({'keywords': keywords})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
