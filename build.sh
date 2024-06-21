@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+# pip install -r requirements.txt
+
 # Upgrade pip to the latest version
-pip install --upgrade pip
 
 # Ensure Cython is installed before SpaCy
 pip install Cython==0.29.21
