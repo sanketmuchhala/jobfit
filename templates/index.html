@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyword Extractor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Job Description Keyword Extractor</h1>
+        <form id="keywordForm" action="/extract_keywords" method="post">
+            <textarea name="job_description" rows="10" cols="50" placeholder="Paste the job description here..."></textarea><br>
+            <input type="submit" value="Extract Keywords">
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('keywordForm').onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/extract_keywords', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            document.getElementById('results').innerHTML = '<h2>Suggested Keywords:</h2><ul>' + 
+                data.keywords.map(keyword => `<li>${keyword}</li>`).join('') + '</ul>';
+        };
+    </script>
+</body>
+</html>
