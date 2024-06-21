@@ -42,13 +42,13 @@ This project is a web application that extracts relevant technical keywords from
 3. **Install the dependencies**:
 
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 
 4. **Download the SpaCy model**:
 
    ```bash
-   python -m spacy download en_core_web_sm
+   python3 -m spacy download en_core_web_sm
    ```
 
 ## Running the Application Locally
@@ -56,7 +56,7 @@ This project is a web application that extracts relevant technical keywords from
 1. **Run the Flask application**:
 
    ```bash
-   python app.py
+   python3 app.py
    ```
 
 2. **Open your browser** and navigate to `http://127.0.0.1:5000/`.
