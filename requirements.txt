@@ -1,5 +1,5 @@
 Flask==2.0.1
 transformers==4.6.1
-torch==1.8.1  # or tensorflow==2.5.0 if you prefer TensorFlow
+torch==2.3.1  # or tensorflow==2.5.0 if you prefer TensorFlow
 pandas==1.2.4
 spacy==3.0.6
