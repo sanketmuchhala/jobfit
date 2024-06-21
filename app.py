@@ -49,6 +49,7 @@ technical_keywords = [
     'Quantum Computing', 'Qiskit', 'IBM Q Experience', 'Microsoft Quantum', 'D-Wave'
 ]
 
+
 def clean_text(text):
     # Clean the text by removing unwanted characters
     text = re.sub(r'\s+', ' ', text)
