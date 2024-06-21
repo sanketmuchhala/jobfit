@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: job-description-keyword-extractor
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn app:app"
